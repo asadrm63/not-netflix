@@ -1,0 +1,24 @@
+.modal{
+    position: fixed;
+    left: O;
+    top: 0;
+    right: 0;
+    bottom: O;
+    background-color: black;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+      /* padding-top: 60px;
+      padding-bottom: 140px; */
+      padding-right: 15px; 
+      color: whitesmoke;
+      overflow: hidden;
+
+      height: 100vh;
+      width: 210vh;
+      overflow-y: hidden;
+  } 
+
+  .modal-content {
+    padding: 1.5rem;
+  }

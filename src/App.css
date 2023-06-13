@@ -1,31 +1,245 @@
-.App {
+
+*{
+  scroll-behavior: smooth;
+}
+.App{
   text-align: center;
-  
 }
 
-.Movie-Gallery{
+.header{
+  display: flex;
+  justify-content:flex-start;
+  font-family: "Montserrat", sans-serif; 
+ font-size: 2vw; 
+}
+.menu-bar {
+  width: 100%;
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  background-color: #39445a;
+ 
+  padding-bottom: 15px;
+  box-shadow: 0px 1px 5px black;
+  color: white;
+  z-index: 100;
+}
+
+.menu-bar {
+  border-radius: 25px;
+  height: fit-content;
+  display:flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  padding: 0 10px;
+  margin: 0;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.menu-bar li {
+  list-style: none;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 12px 16px;
+  margin: 0 8px;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menu-bar li::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  transition: .2s;
+  border-radius: 25px;
+}
+
+.menu-bar li:hover::before {
+  background: linear-gradient(to bottom, #e8edec, #d2d1d3);
+  box-shadow: 0px 3px 20px 0px black;
+  transform: scale(1.2);
+}
+
+.menu-bar li:hover {
+  color: black;
+}
+
+
+
+
+@keyframes gradient {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+};
+
+.Movie-Gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #5A4FCF;
+  /* padding: 20px; */
+  margin-top: 20px;
+
 }
 
-.movie-card{
-  /* max-height: 300px;
-  margin: 20px;
-  border-radius: 10px;
-  box-shadow: 3px 4px 5px black;
-  overflow: hidden; */
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
-  width: 300px;
+.app .Movie-Gallery {
+  margin-top: 100px;
+}
+
+.movie-card {
+  margin-top: 20px;
+  width: 320px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 20px;
+  /* padding: 20px; */
   margin: 10px;
+  margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
-.movie-card img{
-  height: 100px;
+.movie-card img {
+  height: 640px;
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 100%;
+}
+
+.carousel .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.carousel .slide img {
+  height: 450px;
+  width: 500px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #5A4FCF;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+  background-color: #5A4FCF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #642dbd;
+}
+
+
+.legend {
+  background-color: aqua;
+}
+
+.Search-Movie-Gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  min-height: 100px;
+
+}
+
+.genre-bar {
+  border-radius: 25px;
+  height: fit-content;
+  display:flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  padding: 0 10px;
+  /* margin: 0; */
+  /* position: fixed; */
+  overflow: hidden;
+  /* top: 0; */
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.genre-bar li {
+  list-style: none;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 12px 16px;
+  margin: 0 8px;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.genre-bar li::before {
+  content: " ";
+  position: absolute;
+  /* top: 0; */
+  /* left: 0; */
+  height: 100%;
+  width: 100%;
+  /* z-index: -1; */
+  transition: .2s;
+  border-radius: 25px;
+}
+
+.genre-bar li:hover::before {
+  background: linear-gradient(to bottom, #e8edec, #d2d1d3);
+  box-shadow: 0px 3px 20px 0px black;
+  transform: scale(1.2);
+}
+
+.genre-bar li:hover {
+  color: black;
 }
