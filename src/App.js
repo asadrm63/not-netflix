@@ -29,9 +29,7 @@ function App() {
     }
   }
   
-
-  const apiKey = "89381781542657120b15f4951a87e519";
-
+  const apiKey = process.env.REACT_APP_API_KEY;
   // Fetching Trending
   useEffect(() => {
     const mediaType = toggleTV ? 'tv' : 'movie';
