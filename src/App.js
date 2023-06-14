@@ -14,6 +14,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cardModalData, setCardModalData] = useState(null);
   const [toggleTV, setToggleTV] = useState(false);
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const handleSearchChange = (event) => {
     setQuery(event.target.value);
@@ -28,8 +29,8 @@ function App() {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  
-  const apiKey = process.env.REACT_APP_API_KEY;
+
+
   // Fetching Trending
   useEffect(() => {
     const mediaType = toggleTV ? 'tv' : 'movie';
@@ -80,7 +81,7 @@ function App() {
               .then(res => res.json())
               .then(data => {
                 const trailer = data.results.find(
-                  (video) => video.type === "Trailer" && video.site === "YouTube"
+                  (video) => video.type === "Trailer"
                 );
                 if (trailer) {
                   movie.videoKey = trailer.key;
@@ -134,14 +135,11 @@ function App() {
     <div className='App'>
     <div className='app'>
 <Navbar  toggleTV={toggleTV} setToggleTV={setToggleTV}/>
-      
       <div className="Movie-Gallery" id='trending'>
         
         <h1>Trending</h1>
           <MovieGallery movies={movies}  />
       </div>
-
-
       <div className='genre' id='sortedByGenre'>
         <h1>Genres</h1>
         <ul className='genre-bar'>
@@ -152,7 +150,6 @@ function App() {
         ))}
         </ul>
       </div>
-
 <div className="Movie-Gallery">
   <h1>Movies Sorted By Genre</h1>
 
@@ -167,34 +164,32 @@ function App() {
   )}
 </div>
 
-
-      <div className="search-bar-container" id='search'>
-        <form className="search-bar">
-          <input
-            className="search-field"
-            value={query}
-            onChange={handleSearchChange}
-            type="text"
-            placeholder="Search for a Movie."
-            required
-          />
+ <div className="search-bar-container" id='search'>
+  <form className="search-bar">
+    <input
+    className="search-field"
+    value={query}
+      onChange={handleSearchChange}
+      type="text"
+      placeholder="Search for a Movie."
+      required
+       />
           <button className="search-bar-button" onClick={searchQuery} type="submit">Search</button>
         </form>
       </div>
-
-      {searchResults.length > 0 && (
-        <div className='Search-Movie-Gallery'>
-          <h1>Search Results</h1>
-          {searchResults.map((movie) => (
-            <div key={movie.id} className="movie-card">
-              <button onClick={() => setCardModalData(movie)}>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-              </button>
-              {/* <p>{movie.title}</p> */}
-              <Badge badgeContent={movie.vote_average.toFixed(1)} color={movie.vote_average >6? 'primary':'error'}/>
-            </div>
-          ))}
-        </div>
+      
+ {searchResults.length > 0 && (
+<div className='Search-Movie-Gallery'>
+<h1>Search Results</h1>
+  {searchResults.map((movie) => (
+     <div key={movie.id} className="movie-card">
+       <button onClick={() => setCardModalData(movie)}>
+         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+       </button>
+       {/* <p>{movie.title}</p> */}
+      <Badge badgeContent={movie.vote_average.toFixed(1)} color={movie.vote_average >6? 'primary':'error'}/>
+    </div>
+  ))}  </div>
       )}
   {cardModalData && (
        <Modal movie={cardModalData} onClose={() => setCardModalData(null)} />
