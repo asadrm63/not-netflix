@@ -14,7 +14,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cardModalData, setCardModalData] = useState(null);
   const [toggleTV, setToggleTV] = useState(false);
-  const apiKey = process.env.REACT_APP_API_KEY;
+  // const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = "e908deae2e7ac282a61f49561f56ee92";
 
   const handleSearchChange = (event) => {
     setQuery(event.target.value);
